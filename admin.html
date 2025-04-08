@@ -91,6 +91,29 @@
 
 <button class="btn" onclick="saveGraph()">グラフ保存</button>
 
+
+<!-- 🔔 お知らせ編集フォーム -->
+<h2>お知らせ編集</h2>
+<label>重要なお知らせ</label>
+<input type="text" id="importantNoticeInput" placeholder="例：テストがあります！" style="width: 100%;"><br><br>
+
+<label>お知らせ</label>
+<input type="text" id="regularNoticeInput" placeholder="例：新教材を追加しました。" style="width: 100%;"><br><br>
+
+<!-- 🎯 テスト進捗入力（学年別） -->
+<h2>テスト進捗バー編集</h2>
+<label>中学一年 進捗率 (%)</label>
+<input type="number" id="tyuu1TestInput" min="0" max="100" value="0"><br><br>
+
+<label>中学二年 進捗率 (%)</label>
+<input type="number" id="tyuu2TestInput" min="0" max="100" value="0"><br><br>
+
+<label>中学三年 進捗率 (%)</label>
+<input type="number" id="tyuu3TestInput" min="0" max="100" value="0"><br><br>
+
+<button onclick="saveAdminSettings()" style="padding: 10px 20px; border-radius: 8px; background: #3498db; color: white; border: none; font-size: 16px;">保存</button>
+
+
 <script>
   function saveGraph() {
     const data = {
@@ -155,6 +178,56 @@
     localStorage.setItem("tyuu3_progress", progress3);
     alert("保存しました！（中学三年）");
   }
+</script>
+
+<script>
+  function saveAdminSettings() {
+    // 🔔 お知らせの保存
+    const important = document.getElementById("importantNoticeInput").value;
+    const notice = document.getElementById("regularNoticeInput").value;
+    localStorage.setItem("admin_notices", JSON.stringify({
+      important: important,
+      notice: notice
+    }));
+  
+    // 🎯 テスト進捗の保存
+    const tyuu1 = Number(document.getElementById("tyuu1TestInput").value);
+    const tyuu2 = Number(document.getElementById("tyuu2TestInput").value);
+    const tyuu3 = Number(document.getElementById("tyuu3TestInput").value);
+    localStorage.setItem("admin_tests", JSON.stringify({
+      tyuu1: tyuu1,
+      tyuu2: tyuu2,
+      tyuu3: tyuu3
+    }));
+  
+    alert("お知らせとテスト進捗を保存しました！");
+  }
+  </script>
+
+
+<!--google -->
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6uWrfDjFnz1PFSPSDN_X8OHaHtZet_VA",
+    authDomain: "lets-eng-dashboard.firebaseapp.com",
+    projectId: "lets-eng-dashboard",
+    storageBucket: "lets-eng-dashboard.firebasestorage.app",
+    messagingSenderId: "1076284631243",
+    appId: "1:1076284631243:web:8219ca09e8d2f11de8134e",
+    measurementId: "G-MPCVC0F6S5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 </script>
 </body>
 </html>

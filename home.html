@@ -34,7 +34,10 @@
   
   <style>
     
-    * {
+ /* =====================
+  ベースリセット
+===================== */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -48,7 +51,9 @@ body {
   overflow: hidden;
 }
 
-/* ===== サイドバー全体 ===== */
+/* =====================
+  サイドバー
+===================== */
 .sidebar {
   width: 220px;
   background-color: #1e1e2f;
@@ -56,33 +61,63 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: none; /* ← アニメーション無効 */
 }
 
 .sidebar.collapsed {
   width: 60px;
 }
 
-/* ===== ロゴ表示エリア ===== */
+.toggle-btn {
+  position: absolute;
+  top: 1rem;
+  right: -40px;
+  background-color: #1e1e2f;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 5%;
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* =====================
+  ロゴエリア
+===================== */
 .logo {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 1rem;
 }
 
+.sidebar:not(.collapsed) .logo {
+  justify-content: flex-start;
+  padding-left: 3rem;
+}
+
+.logohiko-square {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.logohiko-wide {
+  height: 40px;
+  object-fit: contain;
+}
+
 .logo-icon {
   display: none;
-  font-size: 1.5rem;
 }
 
 .logo-text {
-  white-space: nowrap;
-}
-
-.logohiko {
-    width: 50px;
+  display: inline-block;
 }
 
 .sidebar.collapsed .logo-text {
@@ -94,7 +129,9 @@ body {
   margin: 0 auto;
 }
 
-/* ===== ナビゲーションメニュー ===== */
+/* =====================
+  メニュー
+===================== */
 .sidebar nav {
   display: flex;
   flex-direction: column;
@@ -116,7 +153,7 @@ body {
   border-radius: 6px;
   cursor: pointer;
   text-decoration: none;
-  transition: none;
+  transition: background-color 0.2s;
 }
 
 .menu-item:hover {
@@ -126,19 +163,28 @@ body {
 
 .menu-item i {
   min-width: 20px;
-  text-align: center;
   margin-right: 1rem;
+  text-align: center;
 }
 
 .sidebar.collapsed .menu-item span {
   display: none;
 }
 
-/* ===== サブメニュー（アコーディオン） ===== */
+/* サブメニュー */
 .submenu {
   display: none;
   flex-direction: column;
   margin-left: 2rem;
+}
+
+.submenu.active {
+  display: flex;
+}
+
+.sidebar.collapsed .submenu {
+  margin-left: 0;
+  align-items: center;
 }
 
 .submenu a {
@@ -152,151 +198,204 @@ body {
   color: #fff;
 }
 
-.submenu.active {
-  display: flex;
+/* =====================
+  カラーパレット
+===================== */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --bg-light: #f4f6f9;
+  --text-dark: #2c3e50;
+  --text-muted: #7f8c8d;
+  --card-bg: #ffffff;
+  --completed-color: #48dbfb;
+  --partial-color: #ff9ff3;
 }
 
-.sidebar.collapsed .submenu {
-  margin-left: 0;
-  align-items: center;
+/* =====================
+  メインコンテンツレイアウト
+===================== */
+body {
+  background-color: var(--bg-light);
+  overflow-x: hidden;
 }
 
-/* ===== 折りたたみボタン ===== */
-.toggle-btn {
-  position: absolute;
-  top: 1rem;
-  right: -40px;
-  background-color: #1e1e2f;
-  color: #fff;
-  border: 2px solid #fff;
-  border-radius: 5%;
-  width: 30px;
-  height: 30px;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-}
-
-/* ===== メインコンテンツエリア ===== */
 .main-content {
-  flex: 1;
-  padding: 2rem;
-  margin-left: 22px;
-  transition: none;
+  max-width: 1800px; /* 幅を広げる */
+  margin: 0 auto;
+  padding: 30px; /* パディングを増やす */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(200px, auto); /* 最小高さを増やす */
+  gap: 25px; /* ギャップを増やす */
+  height: calc(100vh - 60px); /* フッタースペース考慮 */
+  box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
 .sidebar.collapsed ~ .main-content {
-  margin-left: 60px;
+  margin-left: 80px; /* サイドバー折りたたみ時の調整 */
+  width: calc(100% - 80px);
 }
 
-/* ===== その他スタイル ===== */
-h2 {
-  margin-bottom: 1rem;
-}
-
+/* =====================
+  ダッシュボードカード
+===================== */
 .card {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  margin-bottom: 2rem;
-}
-
-footer {
-  text-align: center;
-  margin-top: 2rem;
-  color: #777;
-  font-size: 0.9rem;
-}
-
-/* ロゴ全体 */
-.logo {
+  background: var(--card-bg);
+  border-radius: 20px; /* 角丸を大きく */
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.08),
+    0 6px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px; /* パディングを増やす */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* =====================
+  グリッド配置 (余裕を持たせる)
+===================== */
+.progress-chart {
+  grid-column: span 9; /* 幅を広げる */
+  grid-row: span 3; /* 高さを増やす */
+}
+
+.learning-calendar {
+  grid-column: span 3; /* 幅を調整 */
+  grid-row: span 3;
+}
+
+.status-card {
+  grid-column: span 4; /* 幅を広げる */
+  grid-row: span 1;
+  text-align: center;
+}
+
+.important-card {
+  grid-column: span 8; /* 幅を広げる */
+  grid-row: span 1;
+}
+
+/* =====================
+  カレンダーデザイン
+===================== */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 30px; /* ギャップを増やす */
+  flex-grow: 1;
+  margin-top: 15px;
+}
+
+.calendar-day {
+  background-color: #e8f4f8;
+  border-radius: 12px; /* 角丸を大きく */
+  text-align: center;
+  padding: 20px; /* パディングを増やす */
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
 }
 
-/* ロゴ画像 */
-.logohiko-square {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 4px; /* 正方形で角丸少し */
+.calendar-day:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-.logohiko-wide {
-  height: 40px;
-  object-fit: contain;
+.calendar-day.completed {
+  background-color: var(--completed-color);
+  color: white;
 }
 
-/* ロゴ表示制御 */
-.logo-icon {
-  display: none;
+.calendar-day.partial {
+  background-color: var(--partial-color);
+  color: white;
 }
 
-.logo-text {
-  display: inline-block;
-  
+.calendar-day .date {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.sidebar.collapsed .logo-text {
-  display: none;
+.calendar-day .day {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.7);
 }
 
-.sidebar.collapsed .logo-icon {
-  display: inline-block;
+/* =====================
+  レスポンシブ対応
+===================== */
+@media (max-width: 3000px) {
+  .main-content {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .progress-chart {
+    grid-column: span 6;
+  }
+
+  .learning-calendar {
+    grid-column: span 2;
+  }
+
+  .status-card {
+    grid-column: span 4;
+  }
+
+  .important-card {
+    grid-column: span 8;
+  }
 }
 
-/* ロゴ配置（展開時だけ左寄せ） */
-.sidebar:not(.collapsed) .logo {
-  justify-content: flex-start;
-  padding-left: 3.0rem;
+@media (max-width: 1024px) {
+  .main-content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .progress-chart,
+  .learning-calendar,
+  .status-card,
+  .important-card {
+    grid-column: span 4;
+  }
 }
 
-/* メニュー配置（展開時だけ左寄せ） */
-.sidebar:not(.collapsed) nav {
-  align-items: flex-start;
-  padding-left: -0rem;
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .progress-chart,
+  .learning-calendar,
+  .status-card,
+  .important-card {
+    grid-column: span 1;
+  }
 }
-    /* 以前のCSS + 追加スタイル */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-    }
 
-    .progress-chart, .learning-calendar {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
 
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-    }
 
-    .calendar-day {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
-    }
 
-    .calendar-day.completed {
-      background-color: #4CAF50;
-      color: white;
-    }
 
-    .calendar-day.partial {
-      background-color: #FFC107;
-    }
+
+
+
+
+
+
+
   </style>
 </head>
 <body>
@@ -397,6 +496,34 @@ footer {
       <p>英語をしっかりと身につけること！メンタルケアサポート管理部より。</p>
     </div>
 
+    <div class="card">
+      <h3>📢 重要なお知らせ</h3>
+      <p>4月15日：新しい文法テストが追加されました。</p>
+    </div>
+    
+    <div class="card">
+      <h3>📰 お知らせ</h3>
+      <p>週末に英検模試を追加予定です！</p>
+    </div>
+
+    <div class="card">
+      <h3>中学1年 テスト進行</h3>
+      <div class="progress-bar"><div class="progress-bar-fill" style="width: 30%;"></div></div>
+      <p>30% 完了（3/10）</p>
+    </div>
+    
+    <div class="card">
+      <h3>中学2年 テスト進行</h3>
+      <div class="progress-bar"><div class="progress-bar-fill" style="width: 60%;"></div></div>
+      <p>60% 完了（6/10）</p>
+    </div>
+    
+    <div class="card">
+      <h3>中学3年 テスト進行</h3>
+      <div class="progress-bar"><div class="progress-bar-fill" style="width: 85%;"></div></div>
+      <p>85% 完了（8.5/10）</p>
+    </div>
+
     <footer>
       &copy; 2025 ヒコネズミテクノロジーズ
     </footer>
@@ -450,6 +577,8 @@ footer {
     };
   
     const storedData = JSON.parse(localStorage.getItem("chartData")) || defaultData;
+
+
   
     const chartCanvas = document.getElementById('progressChart').getContext('2d');
   
@@ -483,7 +612,78 @@ footer {
         }
       }
     });
+
+
+
+    const tyuu1 = JSON.parse(localStorage.getItem("chartData1")) || { grammar: 30, vocab: 40, listening: 50, reading: 20 };
+const tyuu2 = JSON.parse(localStorage.getItem("chartData2")) || { grammar: 50, vocab: 60, listening: 70, reading: 60 };
+const tyuu3 = JSON.parse(localStorage.getItem("chartData3")) || { grammar: 70, vocab: 80, listening: 85, reading: 90 };
+
+const ctx = document.getElementById('progressChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['文法', '単語', 'リスニング', '読解'],
+    datasets: [
+      {
+        label: '中学1年',
+        data: Object.values(tyuu1),
+        backgroundColor: 'rgba(75, 192, 192, 0.4)'
+      },
+      {
+        label: '中学2年',
+        data: Object.values(tyuu2),
+        backgroundColor: 'rgba(255, 99, 132, 0.4)'
+      },
+      {
+        label: '中学3年',
+        data: Object.values(tyuu3),
+        backgroundColor: 'rgba(54, 162, 235, 0.4)'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100
+      }
+    }
+  }
+});
+
+
+
   </script>
 
+
+
+
+
+<!--google -->
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6uWrfDjFnz1PFSPSDN_X8OHaHtZet_VA",
+    authDomain: "lets-eng-dashboard.firebaseapp.com",
+    projectId: "lets-eng-dashboard",
+    storageBucket: "lets-eng-dashboard.firebasestorage.app",
+    messagingSenderId: "1076284631243",
+    appId: "1:1076284631243:web:8219ca09e8d2f11de8134e",
+    measurementId: "G-MPCVC0F6S5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
