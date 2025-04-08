@@ -452,50 +452,7 @@ footer {
     </footer>
   </main>
 
-  <!-- JavaScript：以前のコード同様 -->
-  <script>
-    const toggleBtn = document.getElementById('toggleBtn');
-    const sidebar = document.getElementById('sidebar');
-    const icon = toggleBtn.querySelector('i');
-
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-      icon.classList.toggle('fa-angle-left');
-      icon.classList.toggle('fa-angle-right');
-    });
-
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(`submenu-${id}`);
-      submenu.classList.toggle('active');
-    }
-  </script>
-<!--これはテストの採点スクリプト-->
-  <script>
-    document.getElementById("quiz-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const correctAnswers = {
-        q1: ["I am a student"],
-        q2: ["He is a teacher"],
-        q3: ["You are friends"],
-        q4: ["She is a junior high school student"],
-        q5: ["We are fond of music", "we like music"] // 複数の解答を正解とする
-      };
-
-      const form = e.target;
-      let score = 0;
-      let total = Object.keys(correctAnswers).length;
-
-      for (let key in correctAnswers) {
-        const userInput = form.elements[key].value.trim().toLowerCase();
-        const isCorrect = correctAnswers[key].some(ans => ans === userInput);
-        if (isCorrect) score++;
-      }
-
-      const result = document.getElementById("result");
-      result.textContent = `正解数: ${score} / ${total}`;
-      result.style.color = score === total ? "green" : "orange";
-    });
-  </script>
+  <script src="all.js" type="module"></script><!-- JavaScript：以前のコード同様 -->
+  
 </body>
 </html>

@@ -96,20 +96,9 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById("login-form").addEventListener("submit", function(e) {
-      e.preventDefault();
 
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
 
-      if (username === "tommy_0829" && password === "19440829") {
-        alert("ようこそ、トミーさん！");
-        window.location.href = "home.html";
-      } else {
-        document.getElementById("error-message").textContent = "ユーザー名またはパスワードが違います。";
-      }
-    });
-  </script>
+  <script src="all.js" type="module"></script>
+  
 </body>
 </html>

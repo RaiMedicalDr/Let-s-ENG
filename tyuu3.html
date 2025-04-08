@@ -488,35 +488,13 @@ footer {
 </main>
 
   <!-- JavaScript：折りたたみとアコーディオン制御 -->
-  <script>
-    const toggleBtn = document.getElementById('toggleBtn');
-    const sidebar = document.getElementById('sidebar');
-    const icon = toggleBtn.querySelector('i');
-
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-      icon.classList.toggle('fa-angle-left');
-      icon.classList.toggle('fa-angle-right');
-    });
-
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(`submenu-${id}`);
-      submenu.classList.toggle('active');
-    }
-    
-  </script>
-
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const progress = localStorage.getItem("tyuu3_progress") || 0;
-    document.querySelector(".progress-bar-fill").style.width = `${progress}%`;
-    document.querySelector(".card p").textContent = `現在の進捗: ${progress}% (単元は管理者が設定)`;
-  });
-</script>
+ 
 
 
 
 <!--google -->
+<script src="all.js" type="module"></script>
+
 
 
 </body>

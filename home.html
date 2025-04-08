@@ -529,161 +529,21 @@ body {
     </footer>
   </main>
 
-  <script>
-    // カレンダー生成（これはそのままでOK）
-    function generateCalendar() {
-      const calendar = document.getElementById('learningCalendar');
-      for(let i = 1; i <= 31; i++) {
-        const day = document.createElement('div');
-        day.classList.add('calendar-day');
-        day.textContent = i;
-  
-        if([2,3,9,10,16,17,23,24,30].includes(i)) {
-          day.classList.add('completed');
-        } else if([5,12,19,26].includes(i)) {
-          day.classList.add('partial');
-        }
-  
-        calendar.appendChild(day);
-      }
-    }
-  
-    generateCalendar();
-  
-    // サイドバーの切り替え
-    const toggleBtn = document.getElementById('toggleBtn');
-    const sidebar = document.getElementById('sidebar');
-    const icon = toggleBtn.querySelector('i');
-  
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-      icon.classList.toggle('fa-angle-left');
-      icon.classList.toggle('fa-angle-right');
-    });
-  
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(`submenu-${id}`);
-      submenu.classList.toggle('active');
-    }
-  
-    // ====================
-    // 🔥 グラフ部分ここから 🔥
-    // ====================
-    const defaultData = {
-      grammar: 65,
-      vocab: 45,
-      listening: 80,
-      reading: 55
-    };
-  
-    const storedData = JSON.parse(localStorage.getItem("chartData")) || defaultData;
-
-
-  
-    const chartCanvas = document.getElementById('progressChart').getContext('2d');
-  
-    new Chart(chartCanvas, {
-      type: 'bar',
-      data: {
-        labels: ['文法', '単語', 'リスニング', '読解'],
-        datasets: [{
-          label: '学習進捗',
-          data: [
-            storedData.grammar,
-            storedData.vocab,
-            storedData.listening,
-            storedData.reading
-          ],
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)'
-          ]
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100
-          }
-        }
-      }
-    });
 
 
 
-    const tyuu1 = JSON.parse(localStorage.getItem("chartData1")) || { grammar: 30, vocab: 40, listening: 50, reading: 20 };
-const tyuu2 = JSON.parse(localStorage.getItem("chartData2")) || { grammar: 50, vocab: 60, listening: 70, reading: 60 };
-const tyuu3 = JSON.parse(localStorage.getItem("chartData3")) || { grammar: 70, vocab: 80, listening: 85, reading: 90 };
-
-const ctx = document.getElementById('progressChart').getContext('2d');
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['文法', '単語', 'リスニング', '読解'],
-    datasets: [
-      {
-        label: '中学1年',
-        data: Object.values(tyuu1),
-        backgroundColor: 'rgba(75, 192, 192, 0.4)'
-      },
-      {
-        label: '中学2年',
-        data: Object.values(tyuu2),
-        backgroundColor: 'rgba(255, 99, 132, 0.4)'
-      },
-      {
-        label: '中学3年',
-        data: Object.values(tyuu3),
-        backgroundColor: 'rgba(54, 162, 235, 0.4)'
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        max: 100
-      }
-    }
-  }
-});
+  <script src="all.js" type="module"></script>
 
 
 
-  </script>
+
+ 
 
 
 
 
 
 <!--google -->
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyA6uWrfDjFnz1PFSPSDN_X8OHaHtZet_VA",
-    authDomain: "lets-eng-dashboard.firebaseapp.com",
-    projectId: "lets-eng-dashboard",
-    storageBucket: "lets-eng-dashboard.firebasestorage.app",
-    messagingSenderId: "1076284631243",
-    appId: "1:1076284631243:web:8219ca09e8d2f11de8134e",
-    measurementId: "G-MPCVC0F6S5"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
 </body>
 </html>
