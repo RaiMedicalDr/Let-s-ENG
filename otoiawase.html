@@ -323,7 +323,22 @@ footer {
   </main>
 
   <!-- JavaScript：折りたたみとアコーディオン制御 -->
-  <script src="all.js" type="module"></script>
+  <script>
+    const toggleBtn = document.getElementById('toggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    const icon = toggleBtn.querySelector('i');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      icon.classList.toggle('fa-angle-left');
+      icon.classList.toggle('fa-angle-right');
+    });
+
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(`submenu-${id}`);
+      submenu.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>

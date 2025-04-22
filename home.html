@@ -242,18 +242,97 @@ body {
   ダッシュボードカード
 ===================== */
 .card {
-  background: var(--card-bg);
-  border-radius: 20px; /* 角丸を大きく */
-  box-shadow: 
-    0 15px 40px rgba(0, 0, 0, 0.08),
-    0 6px 20px rgba(0, 0, 0, 0.05);
-  padding: 30px; /* パディングを増やす */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: white;
+      border-radius: 20px;
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.08),
+        0 6px 20px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    
+    }
+
+    .card1 {
+
+      /*これは変更しない*/
+  background: white;
+      border-radius: 20px;
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.08),
+        0 6px 20px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      
+      padding: 40px;
+      
+      justify-content: center;
+      align-items: flex-start;
+
+      display: flex;
+      gap: 40px;
+      max-width: 1800px;
+      width: 100%;
+      max-height: 400px;
+      height: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      
+      flex-direction: column;
+      gap: 20px;
+      width: 300px;
+    }
+
+    .card2 {
+
+/*これは変更しない*/
+background: white;
+border-radius: 20px;
+box-shadow:
+  0 15px 40px rgba(0, 0, 0, 0.08),
+  0 6px 20px rgba(0, 0, 0, 0.05);
+padding: 30px;
+
+flex-direction: column;
+overflow: hidden;
+transition: all 0.3s ease;
+position: relative;
+border: 1px solid rgba(0, 0, 0, 0.05);
+
+margin: 0;
+font-family: 'Helvetica Neue', sans-serif;
+
+padding: 40px;
+
+justify-content: center;
+align-items: flex-start;
+
+display: flex;
+gap: 40px;
+max-width: 1800px;
+width: 100%;
+max-height: 400px;
+height: 100%;
+flex-wrap: wrap;
+justify-content: center;
+
+
+flex-direction: column;
+gap: 20px;
+width: 300px;
 }
 
 /* =====================
@@ -387,12 +466,89 @@ body {
 
 
 
+/* ダッシュボード*/
+.main-content {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  overflow-y: auto;
+  height: 100vh;
+}
 
+.main-content h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
 
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
 
+.progress-chart,
+.learning-calendar {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
 
+.progress-chart h3,
+.learning-calendar h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
 
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
 
+.container h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.container p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* プログレスバー追加スタイル */
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--primary-color);
+  transition: width 0.4s ease-in-out;
+}
+
+/* フッター */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #999;
+}
 
 
 
@@ -412,12 +568,12 @@ body {
   <h1 class="logo"> <a href="index.html" >
     <!-- 収縮時に表示される正方形ロゴ -->
     <span class="logo-icon">
-      <img class="logohiko-square" src="logo.JPG" >
+      <img class="logohiko-square" src="Let’s ENG.png" >
     </span>
   
     <!-- 展開時に表示される横長ロゴ -->
     <span class="logo-text">
-      <img class="logohiko-wide" src="logo.JPG" >
+      <img class="logohiko-wide" src="Let’s ENG.png" >
     </span>
 
   </a>
@@ -491,34 +647,34 @@ body {
       </div>
     </div>
 
-    <div class="card">
+    <div class="container">
       <h3>今月の目標</h3>
       <p>英語をしっかりと身につけること！メンタルケアサポート管理部より。</p>
     </div>
 
-    <div class="card">
+    <div class="container">
       <h3>📢 重要なお知らせ</h3>
       <p>4月15日：新しい文法テストが追加されました。</p>
     </div>
     
-    <div class="card">
+    <div class="container">
       <h3>📰 お知らせ</h3>
       <p>週末に英検模試を追加予定です！</p>
     </div>
 
-    <div class="card">
+    <div class="container">
       <h3>中学1年 テスト進行</h3>
       <div class="progress-bar"><div class="progress-bar-fill" style="width: 30%;"></div></div>
       <p>30% 完了（3/10）</p>
     </div>
     
-    <div class="card">
+    <div class="container">
       <h3>中学2年 テスト進行</h3>
       <div class="progress-bar"><div class="progress-bar-fill" style="width: 60%;"></div></div>
       <p>60% 完了（6/10）</p>
     </div>
     
-    <div class="card">
+    <div class="container">
       <h3>中学3年 テスト進行</h3>
       <div class="progress-bar"><div class="progress-bar-fill" style="width: 85%;"></div></div>
       <p>85% 完了（8.5/10）</p>
@@ -532,12 +688,136 @@ body {
 
 
 
-  <script src="all.js" type="module"></script>
 
 
 
+  <script>
+    // カレンダー生成（これはそのままでOK）
+    function generateCalendar() {
+      const calendar = document.getElementById('learningCalendar');
+      for(let i = 1; i <= 31; i++) {
+        const day = document.createElement('div');
+        day.classList.add('calendar-day');
+        day.textContent = i;
+  
+        if([2,3,9,10,16,17,23,24,30].includes(i)) {
+          day.classList.add('completed');
+        } else if([5,12,19,26].includes(i)) {
+          day.classList.add('partial');
+        }
+  
+        calendar.appendChild(day);
+      }
+    }
+  
+    generateCalendar();
+  
+    // サイドバーの切り替え
+    const toggleBtn = document.getElementById('toggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    const icon = toggleBtn.querySelector('i');
+  
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      icon.classList.toggle('fa-angle-left');
+      icon.classList.toggle('fa-angle-right');
+    });
+  
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(`submenu-${id}`);
+      submenu.classList.toggle('active');
+    }
+  
+    // ====================
+    // 🔥 グラフ部分ここから 🔥
+    // ====================
+    const defaultData = {
+      grammar: 65,
+      vocab: 45,
+      listening: 80,
+      reading: 55
+    };
+  
+    const storedData = JSON.parse(localStorage.getItem("chartData")) || defaultData;
 
- 
+
+  
+    const chartCanvas = document.getElementById('progressChart').getContext('2d');
+  
+    new Chart(chartCanvas, {
+      type: 'bar',
+      data: {
+        labels: ['文法', '単語', 'リスニング', '読解'],
+        datasets: [{
+          label: '学習進捗',
+          data: [
+            storedData.grammar,
+            storedData.vocab,
+            storedData.listening,
+            storedData.reading
+          ],
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+
+
+
+    const tyuu1 = JSON.parse(localStorage.getItem("chartData1")) || { grammar: 30, vocab: 40, listening: 50, reading: 20 };
+const tyuu2 = JSON.parse(localStorage.getItem("chartData2")) || { grammar: 50, vocab: 60, listening: 70, reading: 60 };
+const tyuu3 = JSON.parse(localStorage.getItem("chartData3")) || { grammar: 70, vocab: 80, listening: 85, reading: 90 };
+
+const ctx = document.getElementById('progressChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['文法', '単語', 'リスニング', '読解'],
+    datasets: [
+      {
+        label: '中学1年',
+        data: Object.values(tyuu1),
+        backgroundColor: 'rgba(75, 192, 192, 0.4)'
+      },
+      {
+        label: '中学2年',
+        data: Object.values(tyuu2),
+        backgroundColor: 'rgba(255, 99, 132, 0.4)'
+      },
+      {
+        label: '中学3年',
+        data: Object.values(tyuu3),
+        backgroundColor: 'rgba(54, 162, 235, 0.4)'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100
+      }
+    }
+  }
+});
+
+
+
+  </script>
 
 
 

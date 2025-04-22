@@ -355,12 +355,12 @@ footer {
     <h1 class="logo"> <a href="home.html" >
       <!-- 収縮時に表示される正方形ロゴ -->
       <span class="logo-icon">
-        <img class="logohiko-square" src="logo.JPG" >
+        <img class="logohiko-square" src="Let’s ENG.png" >
       </span>
     
       <!-- 展開時に表示される横長ロゴ -->
       <span class="logo-text">
-        <img class="logohiko-wide" src="logo.JPG" >
+        <img class="logohiko-wide" src="Let’s ENG.png" >
       </span>
   
     </a>
@@ -488,9 +488,30 @@ footer {
   </main>
 
   <!-- JavaScript：以前のコード同様 -->
-  
+  <script>
+    const toggleBtn = document.getElementById('toggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    const icon = toggleBtn.querySelector('i');
 
-<script src="all.js" type="module"></script>
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      icon.classList.toggle('fa-angle-left');
+      icon.classList.toggle('fa-angle-right');
+    });
+
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(`submenu-${id}`);
+      submenu.classList.toggle('active');
+    }
+  </script>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const progress = localStorage.getItem("tyuu1_progress") || 0;
+    document.querySelector(".progress-bar-fill").style.width = `${progress}%`;
+    document.querySelector(".card p").textContent = `現在の進捗: ${progress}% (単元は管理者が設定)`;
+  });
+</script>
 
 
 

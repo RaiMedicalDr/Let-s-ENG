@@ -550,10 +550,77 @@ footer {
   </div>
 </main>
 
-<script src="all.js" type="module"></script>
+
+<script>
+// 解答データ（実際の解答を追加）
+const answers = {
+  'be-verb-1': `
+    <h4>be動詞問題集 解答</h4>
+    <p>1. I am a student. ✓</p>
+    <p>2. She is happy. ✓</p>
+    <p>3. They are from Japan. ✓</p>
+  `,
+  'general-verb-1': `
+    <h4>一般動詞問題集 解答</h4>
+    <p>1. I play tennis. ✓</p>
+    <p>2. She likes music. ✓</p>
+    <p>3. They study English. ✓</p>
+  `,
+  'present-progressive-1': `
+    <h4>現在進行形問題集 解答</h4>
+    <p>1. I am studying now. ✓</p>
+    <p>2. She is cooking dinner. ✓</p>
+    <p>3. They are playing soccer. ✓</p>
+  `,
+  // 他の学年の解答も同様に追加
+  'past-tense-2': `解答データ`,
+  'present-perfect-2': `解答データ`,
+  'subjunctive-2': `解答データ`,
+  'relative-pronoun-3': `解答データ`,
+  'advanced-subjunctive-3': `解答データ`,
+  'participle-construction-3': `解答データ`
+};
+
+function showAnswer(answerId) {
+  const modal = document.getElementById('answer-modal');
+  const answerContent = document.getElementById('answer-content');
+  
+  answerContent.innerHTML = answers[answerId] || '解答が見つかりません。';
+  modal.style.display = 'block';
+}
+
+function closeAnswer() {
+  const modal = document.getElementById('answer-modal');
+  modal.style.display = 'none';
+}
+
+// モーダル外をクリックで閉じる
+window.onclick = function(event) {
+  const modal = document.getElementById('answer-modal');
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+}
 
 
+// サイドバー関連のスクリプト（以前のコード同様）
+const toggleBtn = document.getElementById('toggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    const icon = toggleBtn.querySelector('i');
 
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      icon.classList.toggle('fa-angle-left');
+      icon.classList.toggle('fa-angle-right');
+    });
+
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(`submenu-${id}`);
+      submenu.classList.toggle('active');
+    }
+
+    
+</script>
 
 
 

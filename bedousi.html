@@ -351,15 +351,15 @@ footer {
     
 
     <!-- ロゴ部分 -->
-    <h1 class="logo"> <a href="home.html" >
+    <h1 class="logo"> <a href="Let’s ENG.png" >
       <!-- 収縮時に表示される正方形ロゴ -->
       <span class="logo-icon">
-        <img class="logohiko-square" src="logo.JPG" >
+        <img class="logohiko-square" src="Let’s ENG.png" >
       </span>
     
       <!-- 展開時に表示される横長ロゴ -->
       <span class="logo-text">
-        <img class="logohiko-wide" src="logo.JPG" >
+        <img class="logohiko-wide" src="Let’s ENG.png" >
       </span>
   
     </a>
@@ -454,7 +454,7 @@ footer {
         <li>あなたたちはサッカー選手です。</li>
       </ul>
       <p>答えはテストページでチェックできるよ👇</p>
-      <a href="bedousi_test.html" class="btn">テストページへ ➡️</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfK3LTPUJ3OMyU2XxV0Z6Zk0zpYEBXN9nOY_4dXiV_NgEpbCA/viewform?usp=dialog" class="btn">テストページへ ➡️</a>
     </div>
 
     <footer>
@@ -463,6 +463,21 @@ footer {
   </main>
 
   <!-- JavaScript：以前のコード同様 -->
-  <script src="all.js" type="module"></script>
+  <script>
+    const toggleBtn = document.getElementById('toggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    const icon = toggleBtn.querySelector('i');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      icon.classList.toggle('fa-angle-left');
+      icon.classList.toggle('fa-angle-right');
+    });
+
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(`submenu-${id}`);
+      submenu.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
