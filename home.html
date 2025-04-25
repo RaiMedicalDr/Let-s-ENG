@@ -365,7 +365,7 @@ width: 300px;
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 30px; /* ギャップを増やす */
+  gap: 1px; /* ギャップを増やす */
   flex-grow: 1;
   margin-top: 15px;
 }
@@ -374,7 +374,7 @@ width: 300px;
   background-color: #e8f4f8;
   border-radius: 12px; /* 角丸を大きく */
   text-align: center;
-  padding: 20px; /* パディングを増やす */
+  padding: 2px; /* パディングを増やす */
   font-size: 0.9rem;
   color: var(--text-dark);
   position: relative;
@@ -450,25 +450,13 @@ width: 300px;
   }
 }
 
-@media (max-width: 768px) {
-  .main-content {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
 
-  .progress-chart,
-  .learning-calendar,
-  .status-card,
-  .important-card {
-    grid-column: span 1;
-  }
-}
 
 
 
 /* ダッシュボード*/
 .main-content {
-  max-width: 1800px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: 40px 30px;
   display: flex;
@@ -552,77 +540,150 @@ footer {
 
 
 
+
+
+/*スマホサイズ用*/
+@media (max-width: 480px) {
+  /* サイドバーをヘッダーとして表示 */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    padding: 0;
+  }
+
+  .toggle-btn {
+    position: static;
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .sidebar nav {
+    display: none;
+    flex-direction: column;
+    background-color: #1e1e2f;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .sidebar.active nav {
+    display: flex;
+  }
+
+  .menu-item, .submenu a, .submenu {
+    padding: 10px 20px;
+    text-align: left;
+    width: 100%;
+  }
+
+  .sidebar.collapsed .menu-item span {
+    display: inline;
+  }
+
+  .sidebar .submenu {
+    margin-left: 0;
+    padding-left: 20px;
+  }
+
+  .main-content {
+    padding-top: 80px; /* ヘッダー分のスペースを確保 */
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .progress-chart,
+  .learning-calendar {
+    width: 100%;
+  }
+
+  .calendar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
   </style>
 </head>
 <body>
   <!-- ＞＞＞＞レフトバー＜＜＜＜ -->
 
   <!-- サイドバー（以前のコード同様） -->
-  <aside class="sidebar" id="sidebar">
-    <div class="toggle-btn" id="toggleBtn">
-      <i class="fas fa-angle-left"></i>
-    </div>
-    
-
-    <!-- ロゴ部分 -->
-  <h1 class="logo"> <a href="index.html" >
-    <!-- 収縮時に表示される正方形ロゴ -->
-    <span class="logo-icon">
-      <img class="logohiko-square" src="Let’s ENG.png" >
-    </span>
-  
-    <!-- 展開時に表示される横長ロゴ -->
-    <span class="logo-text">
-      <img class="logohiko-wide" src="Let’s ENG.png" >
-    </span>
-
-  </a>
+  <!-- サイドバー（上部バーへ） -->
+<aside class="sidebar" id="sidebar">
+  <!-- ロゴ部分 -->
+  <h1 class="logo">
+    <a href="home.html">
+      <span class="logo-icon">
+        <img class="logohiko-square" src="Let’s ENG.png" >
+      </span>
+      <span class="logo-text">
+        <img class="logohiko-wide" src="Let’s ENG.png" >
+      </span>
+    </a>
   </h1>
-  
-    <nav>
-      <!-- 以下省略 -->
-      <div class="menu-item" onclick="toggleSubmenu('work')">
-        <i class="fas fa-chart-line"></i><span>英語↓</span>
-      </div>
-      <div class="submenu" id="submenu-work">
-        <a href="tyuu1.html">中学一年</a>
-        <a href="tyuu2.html">中学二年</a>
-        <a href="tyuu3.html">中学三年</a>
-      </div>
 
-      <div class="menu-item" onclick="toggleSubmenu('service')">
-        <i class="fas fa-users"></i><span>サービス↓</span>
-      </div>
-      <div class="submenu" id="submenu-service">
-        <a href="kotae.html">英語答え</a>
-      </div>
+  <!-- 展開ボタン -->
+  <button class="toggle-btn" id="toggleBtn">
+    <i class="fas fa-bars"></i>
+  </button>
 
-      <div class="menu-item" onclick="toggleSubmenu('team')">
-        <i class="fas fa-cogs"></i><span>チーム↓</span>
-      </div>
-      <div class="submenu" id="submenu-team">
-        <a href="#">開発メンバー</a>
-      </div>
-
-      <div class="menu-item" onclick="toggleSubmenu('contact')">
-        <i class="fas fa-envelope"></i><span>お問い合わせ↓</span>
-      </div>
-      <div class="submenu" id="submenu-contact">
-        <a href="otoiawase.html">フォーム1</a>
-      </div>
-
-      <div class="menu-item" onclick="toggleSubmenu('other')">
-        <i class="fas fa-folder"></i><span>その他↓</span>
-      </div>
-      <div class="submenu" id="submenu-other">
-        <a href="#">利用規約</a>
-        <a href="#">プライバシーポリシー</a>
-      </div>
-
-
-      <a href="index.html">ログアウト</a>
-    </nav>
-  </aside>
+  <!-- メニュー部分（この位置に置いてください） -->
+  <nav>
+    <div class="menu-item" onclick="toggleSubmenu('work')">
+      <i class="fas fa-chart-line"></i><span>英語↓</span>
+    </div>
+    <div class="submenu" id="submenu-work">
+      <a href="tyuu1.html">中学一年</a>
+      <a href="tyuu2.html">中学二年</a>
+      <a href="tyuu3.html">中学三年</a>
+    </div>
+    <div class="menu-item" onclick="toggleSubmenu('service')">
+      <i class="fas fa-users"></i><span>サービス↓</span>
+    </div>
+    <div class="submenu" id="submenu-service">
+      <a href="kotae.html">英語答え</a>
+    </div>
+    <div class="menu-item" onclick="toggleSubmenu('team')">
+      <i class="fas fa-cogs"></i><span>チーム↓</span>
+    </div>
+    <div class="submenu" id="submenu-team">
+      <a href="#">開発メンバー</a>
+    </div>
+    <div class="menu-item" onclick="toggleSubmenu('contact')">
+      <i class="fas fa-envelope"></i><span>お問い合わせ↓</span>
+    </div>
+    <div class="submenu" id="submenu-contact">
+      <a href="otoiawase.html">フォーム1</a>
+    </div>
+    <div class="menu-item" onclick="toggleSubmenu('other')">
+      <i class="fas fa-folder"></i><span>その他↓</span>
+    </div>
+    <div class="submenu" id="submenu-other">
+      <a href="#">利用規約</a>
+      <a href="#">プライバシーポリシー</a>
+    </div>
+    <a href="index.html" class="menu-item"><i class="fas fa-sign-out-alt"></i> <span>ログアウト</span></a>
+  </nav>
+</aside>
   <!-- ＞＞＞＞レフトバー＜＜＜＜ -->
 
 
@@ -815,6 +876,7 @@ new Chart(ctx, {
   }
 });
 
+// サイドバーの展開/折りたたみ（スマホ用）
 
 
   </script>
