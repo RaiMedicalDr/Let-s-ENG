@@ -17,7 +17,6 @@
 
 
 
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ダッシュボード</title>
@@ -634,7 +633,7 @@ footer {
 
     <div class="container">
       <h3>今月の目標</h3>
-      <p>英語をしっかりと身につけること！メンタルケアサポート管理部より。</p>
+      <p>英語の単語はバッチリ⭐️英文を身につけよう！メンタルケアサポート管理部より。</p>
     </div>
 
     <div class="container">
@@ -717,10 +716,10 @@ footer {
     // 🔥 グラフ部分ここから 🔥
     // ====================
     const defaultData = {
-      grammar: 65,
-      vocab: 45,
-      listening: 80,
-      reading: 55
+      grammar: 0,
+      vocab: 0,
+      listening: 0,
+      reading: 0
     };
   
     const storedData = JSON.parse(localStorage.getItem("chartData")) || defaultData;
@@ -813,3 +812,9 @@ new Chart(ctx, {
 
 </body>
 </html>
+
+
+
+
+
+
