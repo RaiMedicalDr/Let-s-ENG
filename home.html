@@ -579,6 +579,8 @@ footer {
       <a href="tyuu2.html">中学二年</a>
       <a href="tyuu3.html">中学三年</a>
     </div>
+
+    
     <div class="menu-item" onclick="toggleSubmenu('service')">
       <i class="fas fa-users"></i><span>サービス↓</span>
     </div>
@@ -611,6 +613,9 @@ footer {
 
 
 
+      
+   
+      
 
 
 
@@ -619,50 +624,73 @@ footer {
   <main class="main-content">
     <h2>学習ダッシュボード</h2>
     
-    <div class="dashboard-grid">
+   
+    
+    <div class="container">
+      <h3>今月の目標5月</h3>
+      <p>英語の単語はバッチリ⭐️英文を身につけよう！メンタルケアサポート管理部より。</p>
+
+      <h3>📰 お知らせ</h3>
+      <p>週末に英検模試を追加予定です！</p>
+      
+
+    <h3>📢 重要なお知らせ</h3>
+    <p>4月15日：新しい文法テストが追加されました。</p>
+
+    </div>
+      </div>
+      
+
+
+
+      <div class="progress-chart">
+        <h3>中学1年 学習進捗</h3>
+        <canvas id="progressChart1"></canvas>
+      </div>
+      <div class="progress-chart">
+        <h3>中学2年 学習進捗</h3>
+        <canvas id="progressChart2"></canvas>
+      </div>
+      <div class="progress-chart">
+        <h3>中学3年 学習進捗</h3>
+        <canvas id="progressChart3"></canvas>
+      </div>
+
       <div class="progress-chart">
         <h3>英語学習進捗</h3>
         <canvas id="progressChart"></canvas>
       </div>
-      
+
+
       <div class="learning-calendar">
         <h3>学習カレンダー</h3>
         <div class="calendar" id="learningCalendar"></div>
       </div>
     </div>
 
-    <div class="container">
-      <h3>今月の目標</h3>
-      <p>英語の単語はバッチリ⭐️英文を身につけよう！メンタルケアサポート管理部より。</p>
-    </div>
-
-    <div class="container">
-      <h3>📢 重要なお知らせ</h3>
-      <p>4月15日：新しい文法テストが追加されました。</p>
-    </div>
-    
-    <div class="container">
-      <h3>📰 お知らせ</h3>
-      <p>週末に英検模試を追加予定です！</p>
-    </div>
 
     <div class="container">
       <h3>中学1年 テスト進行</h3>
       <div class="progress-bar"><div class="progress-bar-fill" style="width: 30%;"></div></div>
-      <p>30% 完了（3/10）</p>
+      <p>8% 完了（1/10）</p>
     </div>
     
     <div class="container">
       <h3>中学2年 テスト進行</h3>
-      <div class="progress-bar"><div class="progress-bar-fill" style="width: 60%;"></div></div>
-      <p>60% 完了（6/10）</p>
+      <div class="progress-bar"><div class="progress-bar-fill" style="width: 0%;"></div></div>
+      <p>0% 完了（0/10）</p>
     </div>
     
     <div class="container">
       <h3>中学3年 テスト進行</h3>
-      <div class="progress-bar"><div class="progress-bar-fill" style="width: 85%;"></div></div>
-      <p>85% 完了（8.5/10）</p>
+      <div class="progress-bar"><div class="progress-bar-fill" style="width: 0%;"></div></div>
+      <p>0% 完了（0/10）</p>
     </div>
+
+    
+
+
+    
 
     <footer>
       &copy; 2025 ヒコネズミテクノロジーズ
@@ -674,137 +702,158 @@ footer {
 
 
 
+    <script>
+// サイドバー切り替え
+// ユーティリティ関数
+const $ = selector => document.querySelector(selector);
+const $$ = selector => document.querySelectorAll(selector);
 
-  <script>
-    // カレンダー生成（これはそのままでOK）
-    function generateCalendar() {
-      const calendar = document.getElementById('learningCalendar');
-      for(let i = 1; i <= 31; i++) {
-        const day = document.createElement('div');
-        day.classList.add('calendar-day');
-        day.textContent = i;
-  
-        if([2,3,9,10,16,17,23,24,30].includes(i)) {
-          day.classList.add('completed');
-        } else if([5,12,19,26].includes(i)) {
-          day.classList.add('partial');
-        }
-  
-        calendar.appendChild(day);
-      }
-    }
-  
-    generateCalendar();
-  
-    // サイドバーの切り替え
-    const toggleBtn = document.getElementById('toggleBtn');
-    const sidebar = document.getElementById('sidebar');
-    const icon = toggleBtn.querySelector('i');
-  
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-      icon.classList.toggle('fa-angle-left');
-      icon.classList.toggle('fa-angle-right');
+// サイドバー管理
+class SidebarManager {
+  constructor() {
+    this.toggleBtn = $('#toggleBtn');
+    this.sidebar = $('#sidebar');
+    this.initEventListeners();
+  }
+
+  initEventListeners() {
+    this.toggleBtn.addEventListener('click', () => {
+      this.sidebar.classList.toggle('collapsed');
     });
-  
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(`submenu-${id}`);
-      submenu.classList.toggle('active');
-    }
-  
-    // ====================
-    // 🔥 グラフ部分ここから 🔥
-    // ====================
-    const defaultData = {
-      grammar: 0,
-      vocab: 0,
-      listening: 0,
-      reading: 0
-    };
-  
-    const storedData = JSON.parse(localStorage.getItem("chartData")) || defaultData;
+  }
+}
 
+// サブメニュー管理
+class SubmenuManager {
+  static toggle(id) {
+    const submenu = $(`#submenu-${id}`);
+    submenu.classList.toggle('active');
+  }
+}
 
-  
-    const chartCanvas = document.getElementById('progressChart').getContext('2d');
-  
-    new Chart(chartCanvas, {
-      type: 'bar',
+// 学習進捗管理
+class ProgressManager {
+  constructor() {
+    this.initCharts();
+    this.initCalendar();
+  }
+
+  initCharts() {
+    const chartConfigs = [
+      {
+        id: 'progressChart',
+        type: 'doughnut',
+        labels: ['中学1年', '中学2年', '中学3年'],
+        data: [1, 0, 0],
+        colors: ['#48dbfb', '#ff9ff3', '#1dd1a1'],
+        title: '英語学習進捗'
+      },
+      {
+        id: 'progressChart1',
+        type: 'bar',
+        labels: ['進捗'],
+        data: [8],
+        color: '#48dbfb',
+        title: '中学1年'
+      },
+      {
+        id: 'progressChart2',
+        type: 'bar',
+        labels: ['進捗'],
+        data: [0],
+        color: '#ff9ff3',
+        title: '中学2年'
+      },
+      {
+        id: 'progressChart3',
+        type: 'bar',
+        labels: ['進捗'],
+        data: [0],
+        color: '#1dd1a1',
+        title: '中学3年'
+      }
+    ];
+
+    chartConfigs.forEach(config => this.createChart(config));
+  }
+
+  createChart(config) {
+    const ctx = $(`#${config.id}`).getContext('2d');
+    new Chart(ctx, {
+      type: config.type,
       data: {
-        labels: ['文法', '単語', 'リスニング', '読解'],
+        labels: config.labels,
         datasets: [{
-          label: '学習進捗',
-          data: [
-            storedData.grammar,
-            storedData.vocab,
-            storedData.listening,
-            storedData.reading
-          ],
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)'
-          ]
+          label: config.title,
+          data: config.type === 'doughnut' ? config.data : [config.data[0]],
+          backgroundColor: config.type === 'doughnut' ? config.colors : config.color
         }]
       },
       options: {
         responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100
+        plugins: {
+          legend: { position: 'bottom' },
+          title: { display: true, text: config.title }
+        },
+        ...(config.type === 'bar' && {
+          indexAxis: 'y',
+          scales: {
+            y: { beginAtZero: true, max: 100 }
           }
-        }
+        })
       }
     });
+  }
 
+  initCalendar() {
+    const calendar = $('#learningCalendar');
+    const days = ['日', '月', '火', '水', '木', '金', '土'];
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
 
+    // 曜日ヘッダー
+    days.forEach(day => {
+      const header = document.createElement('div');
+      header.className = 'calendar-day';
+      header.innerHTML = `<strong>${day}</strong>`;
+      calendar.appendChild(header);
+    });
 
-    const tyuu1 = JSON.parse(localStorage.getItem("chartData1")) || { grammar: 30, vocab: 40, listening: 50, reading: 20 };
-const tyuu2 = JSON.parse(localStorage.getItem("chartData2")) || { grammar: 50, vocab: 60, listening: 70, reading: 60 };
-const tyuu3 = JSON.parse(localStorage.getItem("chartData3")) || { grammar: 70, vocab: 80, listening: 85, reading: 90 };
+    // 空白セル
+    for (let i = 0; i < firstDay; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'calendar-day';
+      calendar.appendChild(empty);
+    }
 
-const ctx = document.getElementById('progressChart').getContext('2d');
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['文法', '単語', 'リスニング', '読解'],
-    datasets: [
-      {
-        label: '中学1年',
-        data: Object.values(tyuu1),
-        backgroundColor: 'rgba(75, 192, 192, 0.4)'
-      },
-      {
-        label: '中学2年',
-        data: Object.values(tyuu2),
-        backgroundColor: 'rgba(255, 99, 132, 0.4)'
-      },
-      {
-        label: '中学3年',
-        data: Object.values(tyuu3),
-        backgroundColor: 'rgba(54, 162, 235, 0.4)'
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        max: 100
-      }
+    // 日付セル
+    for (let d = 1; d <= lastDate; d++) {
+      const cell = document.createElement('div');
+      cell.className = 'calendar-day';
+      cell.innerHTML = `<div class="date">${d}</div>`;
+      
+      // 進捗マーキング
+      if (d % 5 === 0) cell.classList.add('completed');
+      else if (d % 3 === 0) cell.classList.add('partial');
+      
+      calendar.appendChild(cell);
     }
   }
+}
+
+// 初期化
+document.addEventListener('DOMContentLoaded', () => {
+  new SidebarManager();
+  new ProgressManager();
 });
 
-// サイドバーの展開/折りたたみ（スマホ用）
+// グローバル関数
+window.toggleSubmenu = SubmenuManager.toggle;
 
-
-  </script>
-
-
+</script>
 
 
 
@@ -812,6 +861,8 @@ new Chart(ctx, {
 
 </body>
 </html>
+
+
 
 
 
