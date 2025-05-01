@@ -306,6 +306,17 @@ h2 {
   font-weight: 500;
 }
 
+.btn1 {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
 .btn:hover {
   background: #2980b9;
   transform: translateY(-3px);
@@ -412,12 +423,21 @@ footer {
   <main class="main-content">
     <h2>中学一年 英語学習</h2>
     
+
+
+    <div class="card">
+      <h3>お知らせ</h3>
+      <p>英語のテストを受けましょう。学力確認テスト2025/<a class="btn1" href="https://docs.google.com/forms/d/e/1FAIpQLScJqYBvxLZU1-XvgS5UD7fCKj5M6IRN8_kOImVSvukjU8r9Fw/viewform?usp=dialog">テストを受ける</a></p>
+    </div>
+
+
+
     <div class="card">
       <h3>総合進捗</h3>
       <div class="progress-bar">
-        <div class="progress-bar-fill" style="width: 45%;"></div>
+        <div class="progress-bar-fill" style="width: 16%;"></div>
       </div>
-      <p>現在の進捗: 5% (1/38単元)</p>
+      <p>現在の進捗: 16% (2/38単元)</p>
     </div>
 
     <div class="course-grid">
@@ -488,30 +508,7 @@ footer {
   </main>
 
   <!-- JavaScript：以前のコード同様 -->
-  <script>
-    const toggleBtn = document.getElementById('toggleBtn');
-    const sidebar = document.getElementById('sidebar');
-    const icon = toggleBtn.querySelector('i');
-
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-      icon.classList.toggle('fa-angle-left');
-      icon.classList.toggle('fa-angle-right');
-    });
-
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(`submenu-${id}`);
-      submenu.classList.toggle('active');
-    }
-  </script>
-
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const progress = localStorage.getItem("tyuu1_progress") || 0;
-    document.querySelector(".progress-bar-fill").style.width = `${progress}%`;
-    document.querySelector(".card p").textContent = `現在の進捗: ${progress}% (単元は管理者が設定)`;
-  });
-</script>
+  
 
 
 
