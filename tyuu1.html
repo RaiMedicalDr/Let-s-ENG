@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="Let’s ENG.png">
 
 <!-- 通常のPWA設定（Android等も対応） -->
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ffffff">
 
 
@@ -47,7 +47,7 @@
 body {
   display: flex;
   font-family: 'Helvetica Neue', sans-serif;
-  background: var(--background-color);
+  background: #f4f4f4;
   height: 100vh;
   overflow: hidden;
 }
@@ -62,7 +62,7 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: none;
+  
 }
 
 .sidebar.collapsed {
@@ -211,6 +211,11 @@ body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   border-radius: 15px;
   transition: none;
+
+  /*このコードが右側をスクロールさせる様にできている*/
+  background-color: var(--bg-light);
+  overflow-x: hidden;
+  /*このコードが右側をスクロールさせる様にできている*/
 }
 
 .sidebar.collapsed ~ .main-content {
@@ -427,7 +432,7 @@ footer {
 
     <div class="card">
       <h3>お知らせ</h3>
-      <p>英語のテストを受けましょう。学力確認テスト2025/<a class="btn1" href="https://docs.google.com/forms/d/e/1FAIpQLScJqYBvxLZU1-XvgS5UD7fCKj5M6IRN8_kOImVSvukjU8r9Fw/viewform?usp=dialog">再度テストを受ける</a></p>
+      <p>学力確認テスト2025/テスト結果<a class="btn1" href="https://docs.google.com/forms/d/e/1FAIpQLScJqYBvxLZU1-XvgS5UD7fCKj5M6IRN8_kOImVSvukjU8r9Fw/viewform?usp=dialog">再度テストを受ける</a></p>
       <a class="btn1" href="goukaku.html">結果</a>
       <a class="btn1" href="test1.html">過去の回答</a>
     </div>
@@ -466,20 +471,51 @@ footer {
       </div>
 
       <div class="course-card">
-        <h3>語彙</h3>
+        <h3>◇新機能◇</h3>
         <ul class="unit-list">
           <li>
-            <span>挨拶</span>
-            <button class="btn">復習</button>
+            <span>日常単語</span>
+            <button class="btn"><a href="tanngonitizyou.html">学習</a></button>
           </li>
+
+          <li>
+            <span>日常行動</span>
+            <button class="btn"><a href="tangokoudou.html">学習</a></button>
+          </li>
+
           <li>
             <span>数字と曜日</span>
-            <button class="btn">復習</button>
+            <button class="btn"><a href="tangosuuzi.html">学習</a></button>
           </li>
           <li>
-            <span>色と形</span>
-            <button class="btn">復習</button>
+            <span></span>
+            <button class="btn"></button>
           </li>
+          <li>
+            <span></span>
+            <button class="btn"></button>
+          </li>
+          <li>
+            <span></span>
+            <button class="btn"></button>
+          </li>
+          <li>
+            <span></span>
+            <button class="btn"></button>
+          </li>
+          <li>
+            <span></span>
+            <button class="btn"></button>
+          </li>
+          <li>
+            <span></span>
+            <button class="btn"></button>
+          </li>
+          <li>
+            <span></span>
+            <button class="btn"></button>
+          </li>
+          
         </ul>
       </div>
 
